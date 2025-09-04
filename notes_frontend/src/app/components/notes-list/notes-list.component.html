@@ -1,0 +1,26 @@
+<section class="notes-list">
+  <div class="note-item" *ngFor="let n of notes" (click)="onSelect(n.id)">
+    <div>
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <strong>{{ n.title || 'Untitled' }}</strong>
+        <span class="badge" *ngIf="n.pinned">★ Pinned</span>
+        <ng-container *ngFor="let t of n.tags">
+          <span class="badge">#{{ t }}</span>
+        </ng-container>
+      </div>
+      <div class="meta">
+        <span>Updated {{ n.updatedAt | date:'medium' }}</span>
+      </div>
+      <div class="preview" style="color:var(--color-muted); font-size:0.9rem; margin-top:0.25rem;">
+        {{ excerpt(n.content) }}
+      </div>
+    </div>
+    <div>
+      <button class="btn" (click)="onDelete(n.id, $event)" aria-label="Delete note">Delete</button>
+    </div>
+  </div>
+
+  <div *ngIf="!notes?.length" class="card" style="padding:0.75rem;">
+    <div style="text-align:center; color:var(--color-muted);">No notes match your filters.</div>
+  </div>
+</section>

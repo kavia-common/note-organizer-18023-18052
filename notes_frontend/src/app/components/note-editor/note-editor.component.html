@@ -1,0 +1,36 @@
+<section class="editor-panel">
+  <div class="editor-toolbar">
+    <div style="display:flex; align-items:center; gap:0.5rem;">
+      <button class="btn" (click)="togglePinned()">
+        {{ note.pinned ? '★ Unpin' : '☆ Pin' }}
+      </button>
+
+      <div class="tags" *ngIf="note.tags?.length">
+        <span class="badge" *ngFor="let t of note.tags">
+          #{{ t }}
+          <button class="btn" style="padding:0 0.4rem" (click)="removeTag(t)" aria-label="Remove tag">✕</button>
+        </span>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:0.5rem;">
+      <button class="btn" (click)="emitSave()">Save</button>
+      <button class="btn" (click)="deleteNote()">Delete</button>
+    </div>
+  </div>
+
+  <div class="editor-fields">
+    <input class="input" type="text" placeholder="Title" [(ngModel)]="note.title" (ngModelChange)="onTitleChange()" />
+    <textarea class="textarea" placeholder="Start writing..." [(ngModel)]="note.content" (ngModelChange)="onContentChange()"></textarea>
+
+    <div style="display:flex; gap:0.5rem; align-items:center;">
+      <input class="input" type="text" placeholder="Add tags: tag1, tag2" [(ngModel)]="tagInput" (keyup.enter)="addTag()" />
+      <button class="btn" (click)="addTag()">Add Tag</button>
+    </div>
+
+    <div style="display:flex; gap:1rem; color:var(--color-muted); font-size:0.85rem;">
+      <div>Created: {{ note.createdAt }}</div>
+      <div>Updated: {{ note.updatedAt }}</div>
+    </div>
+  </div>
+</section>

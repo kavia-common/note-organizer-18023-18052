@@ -1,3 +1,13 @@
-<div class="container">
-  <h1>{{ title }}</h1>
-</div>
+<header class="app-header">
+  <div class="branding">
+    <div class="logo" aria-hidden="true">🗒️</div>
+    <div class="title">{{ title }}</div>
+  </div>
+  <div class="header-actions">
+    <!-- Placeholder for future global actions -->
+  </div>
+</header>
+
+<main class="app-main">
+  <router-outlet></router-outlet>
+</main>
