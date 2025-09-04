@@ -1,0 +1,35 @@
+<div class="notes-grid">
+  <app-sidebar
+    (createNote)="onCreateNote()"
+    (filterChange)="noop()"
+  ></app-sidebar>
+
+  <section class="notes-list-and-editor">
+    <div class="split">
+      <div class="list-pane card">
+        <app-notes-list
+          [notes]="filteredNotes()"
+          (selectNote)="onSelectNote($event)"
+          (deleteNote)="onDeleteNote($event)"
+        ></app-notes-list>
+      </div>
+
+      <div class="editor-pane card" *ngIf="selectedNote(); else emptyState">
+        <app-note-editor
+          [note]="selectedNote()!"
+          (save)="onUpdateNote($event)"
+          (delete)="onDeleteNote($event)"
+        ></app-note-editor>
+      </div>
+      <ng-template #emptyState>
+        <div class="placeholder card">
+          <div class="placeholder-inner">
+            <div class="emoji" aria-hidden="true">📝</div>
+            <div class="title">Select a note to start editing</div>
+            <div class="subtitle">Or create a new one from the sidebar.</div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </section>
+</div>

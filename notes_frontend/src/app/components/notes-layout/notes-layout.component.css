@@ -1,0 +1,39 @@
+.notes-list-and-editor {
+  height: 100%;
+}
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 1rem;
+  height: 100%;
+}
+@media (max-width: 1100px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+}
+.list-pane, .editor-pane, .placeholder {
+  height: 100%;
+  padding: 0.75rem;
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  border-style: dashed;
+}
+.placeholder-inner {
+  text-align: center;
+  display: grid;
+  gap: 0.25rem;
+}
+.placeholder .emoji {
+  font-size: 2rem;
+}
+.placeholder .title {
+  font-weight: 600;
+}
+.placeholder .subtitle {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
